@@ -1,0 +1,29 @@
+{
+  "name": "filmes-api-node",
+  "version": "1.0.0",
+  "description": "API de Filmes assistidos por usuário",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "start-dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RenatoSousaA/filmes-api-node.git"
+  },
+  "author": "Renato Augusto de Sousa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RenatoSousaA/filmes-api-node/issues"
+  },
+  "homepage": "https://github.com/RenatoSousaA/filmes-api-node#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cache-manager": "^2.10.0",
+    "express": "^4.17.1",
+    "firebase": "^7.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "nodemon": "^1.19.3"
+  }
+}
