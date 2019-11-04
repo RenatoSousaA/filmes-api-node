@@ -9,6 +9,7 @@ class Users {
             'password': req.params.password,
             'name': req.params.name
         };
+        console.log(user);
         userModel.addUser(user)
             .then(response => {
                 console.log(response);
