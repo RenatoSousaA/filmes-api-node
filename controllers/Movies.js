@@ -9,7 +9,7 @@ class Movies {
             'description': req.params.description,
             'rating': req.params.rating
         };
-        movieModel.addUser(movie)
+        movieModel.addMovie(movie)
             .then(response => {
                 console.log(response);
                 res.sendStatus(200);
