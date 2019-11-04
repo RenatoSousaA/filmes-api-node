@@ -9,7 +9,7 @@ class Users extends BaseModel {
     addUser(user) {
         return this.db
             .collection('users')
-            .set(user);
+            .add(user);
     }
 
     getUser(id) {
