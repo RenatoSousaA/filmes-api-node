@@ -9,7 +9,7 @@ class Movies extends BaseModel {
     addMovie(user) {
         return this.db
             .collection('movies')
-            .set(user);
+            .add(user);
     }
 
     getMovie(id) {
