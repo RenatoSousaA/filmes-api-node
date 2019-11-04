@@ -5,10 +5,11 @@ class Users {
 
     static addUser(req, res) {
         const user = {
-            'email': req.params.email,
-            'password': req.params.password,
-            'name': req.params.name
+            'email': req.body.email,
+            'password': req.body.password,
+            'name': req.body.name
         };
+
         console.log(user);
         userModel.addUser(user)
             .then(response => {

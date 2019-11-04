@@ -5,9 +5,9 @@ class Movies {
 
     static addMovie(req, res) {
         const movie = {
-            'title': req.params.title,
-            'description': req.params.description,
-            'rating': req.params.rating
+            'title': req.body.title,
+            'description': req.body.description,
+            'rating': req.body.rating
         };
         movieModel.addMovie(movie)
             .then(response => {
