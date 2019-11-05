@@ -23,7 +23,6 @@ class Users {
         const id = req.params.id;
         userModel.getUser(id)
             .then(user => {
-                res.sendStatus(200);
                 res.json(user.data());
             })
             .catch(err => {
@@ -35,7 +34,6 @@ class Users {
     static getAllUsers(req, res) {
         userModel.getAllUsers()
             .then(users => {
-                res.sendStatus(200);
                 res.json(users.docs.map(user => ({
                     id: user.id,
                     ...user.data()

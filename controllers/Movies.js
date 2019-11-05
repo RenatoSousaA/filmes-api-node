@@ -23,7 +23,6 @@ class Movies {
         const id = req.params.id;
         movieModel.getMovie(id)
             .then(movie => {
-                res.sendStatus(200);
                 res.json(movie.data());
             })
             .catch(err => {
@@ -35,7 +34,6 @@ class Movies {
     static getAllMovies(req, res) {
         movieModel.getAllMovies()
             .then(movies => {
-                // res.sendStatus(200);
                 res.json(movies.docs.map(movie => ({
                     id: movie.id,
                     ...movie.data()
