@@ -35,7 +35,7 @@ class Movies {
     static getAllMovies(req, res) {
         movieModel.getAllMovies()
             .then(movies => {
-                res.sendStatus(200);
+                // res.sendStatus(200);
                 res.json(movies.docs.map(movie => ({
                     id: movie.id,
                     ...movie.data()
