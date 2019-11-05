@@ -48,9 +48,9 @@ class Movies {
     static updateMovie(req, res) {
         const id = req.params.id;
         const movie = {
-            'title': req.params.title,
-            'description': req.params.description,
-            'rating': req.params.rating
+            'title': req.body.title,
+            'description': req.body.description,
+            'rating': req.body.rating
         };
         movieModel.updateMovie(id, movie)
             .then(() => {

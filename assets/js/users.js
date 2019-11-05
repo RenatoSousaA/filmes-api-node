@@ -1,3 +1,5 @@
+let idSelectedUser = '';
+
 function getAllUsers() {
     const token = sessionStorage.getItem('token');
     $.ajax({
@@ -7,7 +9,22 @@ function getAllUsers() {
         },
         url: `https://my-movies-renato.herokuapp.com/users`,
         success: function (response) {
-            console.log(response);
+            $('.listUsers').html('');
+            response.forEach(element => {
+                $('.listUsers').append(`
+                    <tr>
+                        <td>
+                            ${element.name}
+                        </td>
+                        <td>
+                            ${element.email}
+                        </td>
+                        <td>
+                            <i class="fas fa-edit" onclick="getUser('${element.id}')"></i>
+                        </td>
+                    </tr>
+                `)
+            });
         },
         contentType: "application/json"
     });
@@ -22,7 +39,10 @@ function getUser(id) {
         },
         url: `https://my-movies-renato.herokuapp.com/users/${id}`,
         success: function (response) {
-            console.log(response);
+            $("#nome").val(response.name);
+            $("#email").val(response.email);
+            $("#senha").val(response.password);
+            idSelectedUser = id;
         },
         contentType: "application/json"
     });
@@ -31,7 +51,7 @@ function getUser(id) {
 function postUser() {
     const token = sessionStorage.getItem('token');
     const user = {
-        name: $("#name").val(),
+        name: $("#nome").val(),
         email: $("#email").val(),
         password: $("#senha").val()
     };
@@ -43,16 +63,16 @@ function postUser() {
         url: `https://my-movies-renato.herokuapp.com/users`,
         data: JSON.stringify(user),
         success: function (response) {
-            console.log(response);
+            getAllUsers();
         },
         contentType: "application/json"
     });
 }
 
-function updateUser(id) {
+function updateUser() {
     const token = sessionStorage.getItem('token');
     const user = {
-        name: $("#name").val(),
+        name: $("#nome").val(),
         email: $("#email").val(),
         password: $("#senha").val()
     };
@@ -61,25 +81,25 @@ function updateUser(id) {
         headers: {
             'x-access-token': token
         },
-        url: `https://my-movies-renato.herokuapp.com/users/${id}`,
+        url: `https://my-movies-renato.herokuapp.com/users/${idSelectedUser}`,
         data: JSON.stringify(user),
         success: function (response) {
-            console.log(response);
+            getAllUsers();
         },
         contentType: "application/json"
     });
 }
 
-function deleteUser(id) {
+function deleteUser() {
     const token = sessionStorage.getItem('token');
     $.ajax({
         method: 'DELETE',
         headers: {
             'x-access-token': token
         },
-        url: `https://my-movies-renato.herokuapp.com/users/${id}`,
+        url: `https://my-movies-renato.herokuapp.com/users/${idSelectedUser}`,
         success: function (response) {
-            console.log(response);
+            getAllUsers();
         },
         contentType: "application/json"
     });

@@ -28,9 +28,11 @@
                     <label for="labelSenha">Senha:</label>
                     <input type="password" id="inputSenha" class="form-control form-control-sm mx-sm-3">
                 </div>
-                <button onclick="loginAPI();" type="button" class="btn btn-primary btn-sm my-1">Acessar API <i
+                <button onclick="loginAPI();" type="button" class="btn btn-primary btn-sm my-1 btn-login">Acessar API <i
                         class="fas fa-lock ml-2"></i></button>
                 <i class="fas fa-power-off off ml-3"></i>
+                <i class="fas fa-times-circle mx-3 text-danger iconError" style="display: none;"></i>
+                <span class="mensagemError" style="display: none;">Mensagem</span>
             </form>
         </div>
 
@@ -51,9 +53,9 @@
                     <input type="password" class="form-control form-control-sm" id="senha"
                         placeholder="Digite sua senha">
                 </div>
-                <button type="button" class="btn btn-primary btn-sm">Cadastrar</button>
-                <button type="button" class="btn btn-warning btn-sm">Alterar</button>
-                <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="postUser();">Cadastrar</button>
+                <button type="button" class="btn btn-warning btn-sm" onclick="updateUser();">Alterar</button>
+                <button type="button" class="btn btn-danger btn-sm" onclick="deleteUser();">Excluir</button>
 
                 <table class="table table-hover mt-4">
                     <thead>
@@ -63,7 +65,7 @@
                             <th>Ações</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="listUsers">
                     </tbody>
                 </table>
             </form>
@@ -80,16 +82,16 @@
                 </div>
                 <div class="form-group">
                     <label for="descrição">Descrição</label>
-                    <input type="text" class="form-control form-control-sm" id="descrição"
+                    <input type="text" class="form-control form-control-sm" id="descricao"
                         placeholder="Comente com uma breve descrição">
                 </div>
                 <div class="form-group">
                     <label for="rating">Nota do filme: <span id="valorNota"></span></label>
                     <input type="range" min="0" max="10" value="5" class="slider" id="notaInput">
                 </div>
-                <button type="button" class="btn btn-primary btn-sm">Cadastrar</button>
-                <button type="button" class="btn btn-warning btn-sm">Alterar</button>
-                <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+                <button type="button" class="btn btn-primary btn-sm" onclick="postMovie();">Cadastrar</button>
+                <button type="button" class="btn btn-warning btn-sm" onclick="updateMovie();">Alterar</button>
+                <button type="button" class="btn btn-danger btn-sm" onclick="deleteMovie();">Excluir</button>
 
                 <table class="table table-hover mt-4">
                     <thead>
@@ -100,7 +102,7 @@
                             <th>Ação</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="listMovies">
                     </tbody>
                 </table>
             </form>
