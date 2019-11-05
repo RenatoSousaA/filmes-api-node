@@ -12,8 +12,8 @@ function loginAPI() {
         password: $("#inputSenha").val()
     };
     $.ajax({
-        type: 'POST',
-        body: JSON.stringify(login),
+        method: 'POST',
+        data: JSON.stringify(login),
         url: `https://my-movies-renato.herokuapp.com/auth`,
         success: function (response) {
             if (response.token) {

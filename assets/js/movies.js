@@ -1,7 +1,7 @@
 function getAllMovies() {
     const token = sessionStorage.getItem('token');
     $.ajax({
-        type: 'GET',
+        method: 'GET',
         headers: {
             'x-access-token': token
         },
@@ -16,7 +16,7 @@ function getAllMovies() {
 function getMovie(id) {
     const token = sessionStorage.getItem('token');
     $.ajax({
-        type: 'GET',
+        method: 'GET',
         headers: {
             'x-access-token': token
         },
@@ -36,12 +36,12 @@ function postMovie() {
         rating: $("#notaInput").val()
     };
     $.ajax({
-        type: 'POST',
+        method: 'POST',
         headers: {
             'x-access-token': token
         },
         url: `https://my-movies-renato.herokuapp.com/movies`,
-        data: movie,
+        data: JSON.stringify(movie),
         success: function (response) {
             console.log(response);
         },
@@ -57,12 +57,12 @@ function updateMovie(id) {
         rating: $("#notaInput").val()
     };
     $.ajax({
-        type: 'PUT',
+        method: 'PUT',
         headers: {
             'x-access-token': token
         },
         url: `https://my-movies-renato.herokuapp.com/movies/${id}`,
-        data: movie,
+        data: JSON.stringify(movie),
         success: function (response) {
             console.log(response);
         },
@@ -73,7 +73,7 @@ function updateMovie(id) {
 function deleteMovie(id) {
     const token = sessionStorage.getItem('token');
     $.ajax({
-        type: 'DELETE',
+        method: 'DELETE',
         headers: {
             'x-access-token': token
         },

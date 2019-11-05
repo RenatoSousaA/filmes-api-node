@@ -1,7 +1,7 @@
 function getAllUsers() {
     const token = sessionStorage.getItem('token');
     $.ajax({
-        type: 'GET',
+        method: 'GET',
         headers: {
             'x-access-token': token
         },
@@ -16,7 +16,7 @@ function getAllUsers() {
 function getUser(id) {
     const token = sessionStorage.getItem('token');
     $.ajax({
-        type: 'GET',
+        method: 'GET',
         headers: {
             'x-access-token': token
         },
@@ -36,12 +36,12 @@ function postUser() {
         password: $("#senha").val()
     };
     $.ajax({
-        type: 'POST',
+        method: 'POST',
         headers: {
             'x-access-token': token
         },
         url: `https://my-movies-renato.herokuapp.com/users`,
-        data: user,
+        data: JSON.stringify(user),
         success: function (response) {
             console.log(response);
         },
@@ -57,12 +57,12 @@ function updateUser(id) {
         password: $("#senha").val()
     };
     $.ajax({
-        type: 'PUT',
+        method: 'PUT',
         headers: {
             'x-access-token': token
         },
         url: `https://my-movies-renato.herokuapp.com/users/${id}`,
-        data: user,
+        data: JSON.stringify(user),
         success: function (response) {
             console.log(response);
         },
@@ -73,7 +73,7 @@ function updateUser(id) {
 function deleteUser(id) {
     const token = sessionStorage.getItem('token');
     $.ajax({
-        type: 'DELETE',
+        method: 'DELETE',
         headers: {
             'x-access-token': token
         },
