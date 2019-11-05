@@ -9,11 +9,8 @@ class Users {
             'password': req.body.password,
             'name': req.body.name
         };
-
-        console.log(user);
         userModel.addUser(user)
-            .then(response => {
-                console.log(response);
+            .then(() => {
                 res.sendStatus(200);
             })
             .catch(err => {
@@ -26,8 +23,8 @@ class Users {
         const id = req.params.id;
         userModel.getUser(id)
             .then(user => {
-                console.log(user);
                 res.sendStatus(200);
+                res.json(user.data());
             })
             .catch(err => {
                 res.sendStatus(500);
@@ -38,8 +35,11 @@ class Users {
     static getAllUsers(req, res) {
         userModel.getAllUsers()
             .then(users => {
-                console.log(users);
                 res.sendStatus(200);
+                res.json(users.docs.map(user => ({
+                    id: user.id,
+                    ...user.data()
+                })));
             })
             .catch(err => {
                 console.log(err);
@@ -55,8 +55,7 @@ class Users {
             'name': req.body.name
         };
         userModel.updateUser(id, user)
-            .then(response => {
-                console.log(response);
+            .then(() => {
                 res.sendStatus(200);
             })
             .catch(err => {
@@ -68,8 +67,7 @@ class Users {
     static deleteUser(req, res) {
         const id = req.params.id;
         userModel.deleteUser(id)
-            .then(response => {
-                console.log(response);
+            .then(() => {
                 res.sendStatus(200);
             })
             .catch(err => {

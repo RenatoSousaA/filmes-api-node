@@ -1,8 +1,9 @@
 function getAllUsers() {
+    const token = sessionStorage.getItem('token');
     $.ajax({
         type: 'GET',
         headers: {
-            'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InlncWc4bnN6aHZjSE1GZG5ubXJNIiwiaWF0IjoxNTcyOTY4ODk4LCJleHAiOjE1NzMwMTIwOTh9.gBtwQO2vzbYEnEklxm1klgeth-o9vrcVoy1JEH4qImQ'
+            'x-access-token': token
         },
         url: `https://my-movies-renato.herokuapp.com/users`,
         success: function (response) {
@@ -13,8 +14,12 @@ function getAllUsers() {
 }
 
 function getUser(id) {
+    const token = sessionStorage.getItem('token');
     $.ajax({
         type: 'GET',
+        headers: {
+            'x-access-token': token
+        },
         url: `https://my-movies-renato.herokuapp.com/users/${id}`,
         success: function (response) {
             console.log(response);
@@ -24,14 +29,17 @@ function getUser(id) {
 }
 
 function postUser() {
+    const token = sessionStorage.getItem('token');
     const user = {
         name: $("#name").val(),
         email: $("#email").val(),
         password: $("#senha").val()
     };
-
     $.ajax({
         type: 'POST',
+        headers: {
+            'x-access-token': token
+        },
         url: `https://my-movies-renato.herokuapp.com/users`,
         data: user,
         success: function (response) {
@@ -42,14 +50,17 @@ function postUser() {
 }
 
 function updateUser(id) {
+    const token = sessionStorage.getItem('token');
     const user = {
         name: $("#name").val(),
         email: $("#email").val(),
         password: $("#senha").val()
     };
-
     $.ajax({
         type: 'PUT',
+        headers: {
+            'x-access-token': token
+        },
         url: `https://my-movies-renato.herokuapp.com/users/${id}`,
         data: user,
         success: function (response) {
@@ -59,9 +70,13 @@ function updateUser(id) {
     });
 }
 
-function deleteUser() {
+function deleteUser(id) {
+    const token = sessionStorage.getItem('token');
     $.ajax({
         type: 'DELETE',
+        headers: {
+            'x-access-token': token
+        },
         url: `https://my-movies-renato.herokuapp.com/users/${id}`,
         success: function (response) {
             console.log(response);

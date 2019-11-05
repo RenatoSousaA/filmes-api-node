@@ -1,5 +1,5 @@
 const MoviesModel = require('../models/Movies');
-const movieModel = new MoviesModel
+const movieModel = new MoviesModel;
 
 class Movies {
 
@@ -10,8 +10,7 @@ class Movies {
             'rating': req.body.rating
         };
         movieModel.addMovie(movie)
-            .then(response => {
-                console.log(response);
+            .then(() => {
                 res.sendStatus(200);
             })
             .catch(err => {
@@ -24,8 +23,8 @@ class Movies {
         const id = req.params.id;
         movieModel.getMovie(id)
             .then(movie => {
-                console.log(movie);
                 res.sendStatus(200);
+                res.json(movie.data());
             })
             .catch(err => {
                 res.sendStatus(500);
@@ -36,8 +35,11 @@ class Movies {
     static getAllMovies(req, res) {
         movieModel.getAllMovies()
             .then(movies => {
-                console.log(movies);
                 res.sendStatus(200);
+                res.json(movies.docs.map(movie => ({
+                    id: movie.id,
+                    ...movie.data()
+                })));
             })
             .catch(err => {
                 res.sendStatus(500);
@@ -53,8 +55,7 @@ class Movies {
             'rating': req.params.rating
         };
         movieModel.updateMovie(id, movie)
-            .then(response => {
-                console.log(response);
+            .then(() => {
                 res.sendStatus(200);
             })
             .catch(err => {
@@ -66,8 +67,7 @@ class Movies {
     static deleteMovie(req, res) {
         const id = req.params.id;
         movieModel.deleteMovie(id)
-            .then(response => {
-                console.log(response);
+            .then(() => {
                 res.sendStatus(200);
             })
             .catch(err => {
