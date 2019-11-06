@@ -8,7 +8,7 @@ function getAllMovies() {
             'x-access-token': token
         },
         url: `https://my-movies-renato.herokuapp.com/movies`,
-        success: function (response) {
+        success: response => {
             $('.listMovies').html('');
             response.forEach(element => {
                 $('.listMovies').append(`
@@ -29,6 +29,9 @@ function getAllMovies() {
                 `)
             });
         },
+        error: err => {
+
+        },
         contentType: "application/json"
     });
 }
@@ -41,12 +44,15 @@ function getMovie(id) {
             'x-access-token': token
         },
         url: `https://my-movies-renato.herokuapp.com/movies/${id}`,
-        success: function (response) {
+        success: response => {
             $("#titulo").val(response.title);
             $("#descricao").val(response.description);
             $("#notaInput").val(response.rating);
             $("#valorNota").html(response.rating);
             idSelectedMovie = id;
+        },
+        error: err => {
+
         },
         contentType: "application/json"
     });
@@ -66,8 +72,11 @@ function postMovie() {
         },
         url: `https://my-movies-renato.herokuapp.com/movies`,
         data: JSON.stringify(movie),
-        success: function (response) {
+        success: () => {
             getAllMovies();
+        },
+        error: err => {
+
         },
         contentType: "application/json"
     });
@@ -87,8 +96,11 @@ function updateMovie() {
         },
         url: `https://my-movies-renato.herokuapp.com/movies/${idSelectedMovie}`,
         data: JSON.stringify(movie),
-        success: function (response) {
+        success: () => {
             getAllMovies();
+        },
+        error: err => {
+
         },
         contentType: "application/json"
     });
@@ -102,8 +114,11 @@ function deleteMovie() {
             'x-access-token': token
         },
         url: `https://my-movies-renato.herokuapp.com/movies/${idSelectedMovie}`,
-        success: function (response) {
+        success: () => {
             getAllMovies();
+        },
+        error: err => {
+
         },
         contentType: "application/json"
     });

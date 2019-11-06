@@ -8,7 +8,7 @@ function getAllUsers() {
             'x-access-token': token
         },
         url: `https://my-movies-renato.herokuapp.com/users`,
-        success: function (response) {
+        success: response => {
             $('.listUsers').html('');
             response.forEach(element => {
                 $('.listUsers').append(`
@@ -23,8 +23,11 @@ function getAllUsers() {
                             <i class="fas fa-edit" onclick="getUser('${element.id}')"></i>
                         </td>
                     </tr>
-                `)
+                `);
             });
+        },
+        error: err => {
+
         },
         contentType: "application/json"
     });
@@ -38,11 +41,14 @@ function getUser(id) {
             'x-access-token': token
         },
         url: `https://my-movies-renato.herokuapp.com/users/${id}`,
-        success: function (response) {
+        success: response => {
             $("#nome").val(response.name);
             $("#email").val(response.email);
             $("#senha").val(response.password);
             idSelectedUser = id;
+        },
+        error: err => {
+
         },
         contentType: "application/json"
     });
@@ -62,8 +68,11 @@ function postUser() {
         },
         url: `https://my-movies-renato.herokuapp.com/users`,
         data: JSON.stringify(user),
-        success: function (response) {
+        success: () => {
             getAllUsers();
+        },
+        error: err => {
+
         },
         contentType: "application/json"
     });
@@ -83,8 +92,11 @@ function updateUser() {
         },
         url: `https://my-movies-renato.herokuapp.com/users/${idSelectedUser}`,
         data: JSON.stringify(user),
-        success: function (response) {
+        success: () => {
             getAllUsers();
+        },
+        error: err => {
+
         },
         contentType: "application/json"
     });
@@ -98,8 +110,11 @@ function deleteUser() {
             'x-access-token': token
         },
         url: `https://my-movies-renato.herokuapp.com/users/${idSelectedUser}`,
-        success: function (response) {
+        success: () => {
             getAllUsers();
+        },
+        error: err => {
+
         },
         contentType: "application/json"
     });
