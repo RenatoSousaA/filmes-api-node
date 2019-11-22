@@ -8,6 +8,8 @@ $(document).ready(() => {
     $(".btn:not(.btn-login)").prop('disabled', true);
 });
 
+const url = 'http://localhost:3000';
+
 function loginAPI() {
     if ($("#inputEmail").val() != '' && $("#inputSenha").val() != "") {
         const login = {
@@ -17,7 +19,7 @@ function loginAPI() {
         $.ajax({
             method: 'POST',
             data: JSON.stringify(login),
-            url: `https://my-movies-renato.herokuapp.com/auth`,
+            url: `${url}/auth`,
             success: response => {
                 if (response.token) {
                     sessionStorage.setItem('token', response.token);
@@ -39,6 +41,7 @@ function loginAPI() {
                 }
             },
             error: err => {
+                console.log(err);
                 $(".iconError").show();
                 $(".mensagemError").show();
                 $(".fa-power-off").hide();

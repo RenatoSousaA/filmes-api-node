@@ -7,7 +7,7 @@ function getAllUsers() {
         headers: {
             'x-access-token': token
         },
-        url: `https://my-movies-renato.herokuapp.com/users`,
+        url: `${url}/users`,
         success: response => {
             $('.listUsers').html('');
             response.forEach(element => {
@@ -40,7 +40,7 @@ function getUser(id) {
         headers: {
             'x-access-token': token
         },
-        url: `https://my-movies-renato.herokuapp.com/users/${id}`,
+        url: `${url}/users/${id}`,
         success: response => {
             $("#nome").val(response.name);
             $("#email").val(response.email);
@@ -66,7 +66,7 @@ function postUser() {
         headers: {
             'x-access-token': token
         },
-        url: `https://my-movies-renato.herokuapp.com/users`,
+        url: `${url}/users`,
         data: JSON.stringify(user),
         success: () => {
             getAllUsers();
@@ -90,7 +90,7 @@ function updateUser() {
         headers: {
             'x-access-token': token
         },
-        url: `https://my-movies-renato.herokuapp.com/users/${idSelectedUser}`,
+        url: `${url}/users/${idSelectedUser}`,
         data: JSON.stringify(user),
         success: () => {
             getAllUsers();
@@ -109,7 +109,7 @@ function deleteUser() {
         headers: {
             'x-access-token': token
         },
-        url: `https://my-movies-renato.herokuapp.com/users/${idSelectedUser}`,
+        url: `${url}/users/${idSelectedUser}`,
         success: () => {
             getAllUsers();
         },

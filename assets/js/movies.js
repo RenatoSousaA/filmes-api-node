@@ -7,7 +7,7 @@ function getAllMovies() {
         headers: {
             'x-access-token': token
         },
-        url: `https://my-movies-renato.herokuapp.com/movies`,
+        url: `${url}/movies`,
         success: response => {
             $('.listMovies').html('');
             response.forEach(element => {
@@ -43,7 +43,7 @@ function getMovie(id) {
         headers: {
             'x-access-token': token
         },
-        url: `https://my-movies-renato.herokuapp.com/movies/${id}`,
+        url: `${url}/movies/${id}`,
         success: response => {
             $("#titulo").val(response.title);
             $("#descricao").val(response.description);
@@ -70,7 +70,7 @@ function postMovie() {
         headers: {
             'x-access-token': token
         },
-        url: `https://my-movies-renato.herokuapp.com/movies`,
+        url: `${url}/movies`,
         data: JSON.stringify(movie),
         success: () => {
             getAllMovies();
@@ -94,7 +94,7 @@ function updateMovie() {
         headers: {
             'x-access-token': token
         },
-        url: `https://my-movies-renato.herokuapp.com/movies/${idSelectedMovie}`,
+        url: `${url}/movies/${idSelectedMovie}`,
         data: JSON.stringify(movie),
         success: () => {
             getAllMovies();
@@ -113,7 +113,7 @@ function deleteMovie() {
         headers: {
             'x-access-token': token
         },
-        url: `https://my-movies-renato.herokuapp.com/movies/${idSelectedMovie}`,
+        url: `${url}/movies/${idSelectedMovie}`,
         success: () => {
             getAllMovies();
         },
