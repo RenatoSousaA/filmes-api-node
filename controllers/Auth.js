@@ -22,11 +22,7 @@ class Auth {
                 });
             })
             .catch(err => {
-                if (err.status == 404) {
-                    res.status(404).send('Not Found');
-                } else if (err.status == 500) {
-                    res.status(500).send('Internal server error');
-                }                
+                res.status(500).send('Internal server error');               
             });
     }
 }

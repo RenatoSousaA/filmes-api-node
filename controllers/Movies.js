@@ -14,8 +14,7 @@ class Movies {
                 res.sendStatus(200);
             })
             .catch(err => {
-                res.sendStatus(500);
-                console.log(err);
+                res.status(500).send('Internal server error');
             });
     }
 
@@ -26,8 +25,7 @@ class Movies {
                 res.json(movie.data());
             })
             .catch(err => {
-                res.sendStatus(500);
-                console.log(err);
+                res.status(500).send('Internal server error');
             });
     }
 
@@ -40,8 +38,7 @@ class Movies {
                 })));
             })
             .catch(err => {
-                res.sendStatus(500);
-                console.log(err);
+                res.status(500).send('Internal server error');
             });
     }
 
@@ -57,8 +54,7 @@ class Movies {
                 res.sendStatus(200);
             })
             .catch(err => {
-                res.sendStatus(500);
-                console.log(err);
+                res.status(500).send('Internal server error');
             });
     }
 
@@ -69,8 +65,7 @@ class Movies {
                 res.sendStatus(200);
             })
             .catch(err => {
-                res.sendStatus(500);
-                console.log(err);
+                res.status(500).send('Internal server error');
             });
     }
 }
